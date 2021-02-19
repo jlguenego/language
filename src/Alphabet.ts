@@ -1,16 +1,19 @@
-export const Alphabet = <T extends string>(
+export const alphabet = <T extends string>(
   ...array: readonly T[]
-): Record<T, symbol> => {
+): Record<T, symbol> & Alphabet => {
   const result: Record<T, symbol> = {} as Record<T, symbol>;
   for (const a of array) {
     result[a] = Symbol(a);
   }
+  Object.setPrototypeOf(result, Alphabet.prototype);
   return result;
 };
 
-export const BinaryAlphabet = Alphabet('0', '1');
+export class Alphabet {}
 
-export const RomanAlphabet = Alphabet(
+export const BinaryAlphabet = alphabet('0', '1');
+
+export const RomanAlphabet = alphabet(
   'a',
   'b',
   'c',
