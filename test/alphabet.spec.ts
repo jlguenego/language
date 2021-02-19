@@ -3,7 +3,7 @@ import {Alphabet} from '../src';
 
 describe('Alphabet Unit Test', () => {
   it('test alphabet', () => {
-    const binaryAlphabet = Alphabet(['titi', 'tata'] as const);
+    const binaryAlphabet = Alphabet('titi', 'tata');
     const hello: symbol[] = [
       binaryAlphabet.titi,
       binaryAlphabet.tata,
