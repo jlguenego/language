@@ -47,6 +47,9 @@ export class Word<T extends Alphabet> {
   }
 
   isSubstringOf(word: Word<T>): boolean {
+    if (this === ((emptyWord as unknown) as Word<T>)) {
+      return true;
+    }
     for (
       let offset = 0;
       offset < word.symbols.length - this.symbols.length;

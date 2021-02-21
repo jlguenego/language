@@ -61,6 +61,7 @@ describe('Alphabet Unit Test', () => {
       word.isPrefixOf(new Word([n.a, n.a, n.b, n.c])),
       false
     );
+    assert.deepStrictEqual(emptyWord.isPrefixOf(emptyWord), true);
   });
   it('test isSuffixOf', () => {
     const n = alphabet('a', 'b', 'c');
@@ -70,6 +71,7 @@ describe('Alphabet Unit Test', () => {
       word.isSuffixOf(new Word([n.a, n.a, n.b, n.c])),
       false
     );
+    assert.deepStrictEqual(emptyWord.isSuffixOf(emptyWord), true);
   });
   it('test isSubstringOf', () => {
     const n = alphabet('a', 'b', 'c');
@@ -82,5 +84,6 @@ describe('Alphabet Unit Test', () => {
       word.isSubstringOf(new Word([n.a, n.a, n.c, n.b, n.c])),
       false
     );
+    assert.deepStrictEqual(emptyWord.isSubstringOf(emptyWord), true);
   });
 });
