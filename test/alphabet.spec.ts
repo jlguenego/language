@@ -62,4 +62,25 @@ describe('Alphabet Unit Test', () => {
       false
     );
   });
+  it('test isSuffixOf', () => {
+    const n = alphabet('a', 'b', 'c');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(word.isSuffixOf(new Word([n.c, n.a, n.b])), true);
+    assert.deepStrictEqual(
+      word.isSuffixOf(new Word([n.a, n.a, n.b, n.c])),
+      false
+    );
+  });
+  it('test isSubstringOf', () => {
+    const n = alphabet('a', 'b', 'c');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(
+      word.isSubstringOf(new Word([n.c, n.a, n.b, n.c])),
+      true
+    );
+    assert.deepStrictEqual(
+      word.isSubstringOf(new Word([n.a, n.a, n.c, n.b, n.c])),
+      false
+    );
+  });
 });

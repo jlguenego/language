@@ -35,6 +35,36 @@ export class Word<T extends Alphabet> {
     }
     return true;
   }
+
+  isSuffixOf(word: Word<T>): boolean {
+    const offset = word.symbols.length - this.symbols.length;
+    for (let i = 0; i < this.symbols.length; i++) {
+      if (this.symbols[i] !== word.symbols[offset + i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  isSubstringOf(word: Word<T>): boolean {
+    for (
+      let offset = 0;
+      offset < word.symbols.length - this.symbols.length;
+      offset++
+    ) {
+      let found = true;
+      for (let i = 0; i < this.symbols.length; i++) {
+        if (this.symbols[i] !== word.symbols[offset + i]) {
+          found = false;
+          break;
+        }
+      }
+      if (found) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 export const emptyWord = new Word<Alphabet>([]);
