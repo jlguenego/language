@@ -9,6 +9,10 @@ export class Word<T extends Alphabet> {
     return MemoCache.handle(this);
   }
 
+  get length() {
+    return this.symbols.length;
+  }
+
   power(n: number): Word<T> {
     const symbols = [];
     for (let i = 0; i < n; i++) {
@@ -28,7 +32,7 @@ export class Word<T extends Alphabet> {
   }
 
   isPrefixOf(word: Word<T>): boolean {
-    for (let i = 0; i < this.symbols.length; i++) {
+    for (let i = 0; i < this.length; i++) {
       if (this.symbols[i] !== word.symbols[i]) {
         return false;
       }
@@ -37,8 +41,8 @@ export class Word<T extends Alphabet> {
   }
 
   isSuffixOf(word: Word<T>): boolean {
-    const offset = word.symbols.length - this.symbols.length;
-    for (let i = 0; i < this.symbols.length; i++) {
+    const offset = word.length - this.length;
+    for (let i = 0; i < this.length; i++) {
       if (this.symbols[i] !== word.symbols[offset + i]) {
         return false;
       }
@@ -50,13 +54,9 @@ export class Word<T extends Alphabet> {
     if (this === ((emptyWord as unknown) as Word<T>)) {
       return true;
     }
-    for (
-      let offset = 0;
-      offset < word.symbols.length - this.symbols.length;
-      offset++
-    ) {
+    for (let offset = 0; offset < word.length - this.length; offset++) {
       let found = true;
-      for (let i = 0; i < this.symbols.length; i++) {
+      for (let i = 0; i < this.length; i++) {
         if (this.symbols[i] !== word.symbols[offset + i]) {
           found = false;
           break;

@@ -99,4 +99,11 @@ describe('Alphabet Unit Test', () => {
     );
     assert.deepStrictEqual(emptyWord.isProperSubstringOf(emptyWord), false);
   });
+
+  it('test length', () => {
+    const n = alphabet('a', 'b', 'c');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(word.length, 2);
+    assert.deepStrictEqual(emptyWord.length, 0);
+  });
 });
