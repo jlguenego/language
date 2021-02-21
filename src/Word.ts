@@ -21,6 +21,20 @@ export class Word<T extends Alphabet> {
     const symbols = this.symbols.concat(word.symbols);
     return new Word(symbols);
   }
+
+  reverse(): Word<T> {
+    const symbols = [...this.symbols].reverse();
+    return new Word(symbols);
+  }
+
+  isPrefixOf(word: Word<T>): boolean {
+    for (let i = 0; i < this.symbols.length; i++) {
+      if (this.symbols[i] !== word.symbols[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
-export const epsilonWord = new Word<Alphabet>([]);
+export const emptyWord = new Word<Alphabet>([]);

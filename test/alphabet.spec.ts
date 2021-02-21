@@ -1,4 +1,4 @@
-import {epsilonWord} from './../src/Word';
+import {emptyWord} from './../src/Word';
 import assert from 'assert';
 import {alphabet, Word} from '../src';
 
@@ -6,7 +6,6 @@ describe('Alphabet Unit Test', () => {
   it('test alphabet', () => {
     const a = alphabet('titi', 'tata');
     const hello: symbol[] = [a.titi, a.tata, a.titi];
-
     assert(hello);
   });
   it('test word', () => {
@@ -19,9 +18,9 @@ describe('Alphabet Unit Test', () => {
     const n = alphabet('a', 'b');
     const word1 = new Word([]);
     const word2 = new Word<typeof n>([]);
-    assert.deepStrictEqual(word1 === epsilonWord, true);
+    assert.deepStrictEqual(word1 === emptyWord, true);
     assert.deepStrictEqual(
-      word2 === ((epsilonWord as unknown) as typeof word2),
+      word2 === ((emptyWord as unknown) as typeof word2),
       true
     );
     assert.deepStrictEqual(
@@ -40,12 +39,27 @@ describe('Alphabet Unit Test', () => {
   it('test powerWord', () => {
     const n = alphabet('a', 'b');
     const word = Word.from(n, ['a', 'b']);
-    assert.deepStrictEqual(word.power(0), epsilonWord);
+    assert.deepStrictEqual(word.power(0), emptyWord);
     assert.deepStrictEqual(word.power(1), word);
     assert.deepStrictEqual(word.power(2), word.concat(word));
     assert.deepStrictEqual(
       word.power(3),
       new Word<typeof n>([n.a, n.b, n.a, n.b, n.a, n.b])
+    );
+  });
+  it('test reverse', () => {
+    const n = alphabet('a', 'b');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(word.reverse(), Word.from(n, ['b', 'a']));
+    assert.deepStrictEqual(emptyWord.reverse(), emptyWord);
+  });
+  it('test isPrefixOf', () => {
+    const n = alphabet('a', 'b', 'c');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(word.isPrefixOf(new Word([n.a, n.b, n.c])), true);
+    assert.deepStrictEqual(
+      word.isPrefixOf(new Word([n.a, n.a, n.b, n.c])),
+      false
     );
   });
 });
