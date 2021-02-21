@@ -37,4 +37,15 @@ describe('Alphabet Unit Test', () => {
     assert.deepStrictEqual(word1 === word2, true);
     assert.deepStrictEqual(word1.symbols[0] === word2.symbols[0], true);
   });
+  it('test powerWord', () => {
+    const n = alphabet('a', 'b');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(word.power(0), epsilonWord);
+    assert.deepStrictEqual(word.power(1), word);
+    assert.deepStrictEqual(word.power(2), word.concat(word));
+    assert.deepStrictEqual(
+      word.power(3),
+      new Word<typeof n>([n.a, n.b, n.a, n.b, n.a, n.b])
+    );
+  });
 });
