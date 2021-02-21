@@ -86,4 +86,17 @@ describe('Alphabet Unit Test', () => {
     );
     assert.deepStrictEqual(emptyWord.isSubstringOf(emptyWord), true);
   });
+  it('test proper', () => {
+    const n = alphabet('a', 'b', 'c');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(
+      word.isProperPrefixOf(new Word([n.a, n.b, n.c])),
+      true
+    );
+    assert.deepStrictEqual(
+      word.isProperSubstringOf(new Word([n.a, n.b])),
+      false
+    );
+    assert.deepStrictEqual(emptyWord.isProperSubstringOf(emptyWord), false);
+  });
 });

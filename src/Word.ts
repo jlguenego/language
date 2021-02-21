@@ -68,6 +68,16 @@ export class Word<T extends Alphabet> {
     }
     return false;
   }
+
+  isProperPrefixOf(word: Word<T>): boolean {
+    return this.isPrefixOf(word) && this !== word;
+  }
+  isProperSuffixOf(word: Word<T>): boolean {
+    return this.isSuffixOf(word) && this !== word;
+  }
+  isProperSubstringOf(word: Word<T>): boolean {
+    return this.isSubstringOf(word) && this !== word;
+  }
 }
 
 export const emptyWord = new Word<Alphabet>([]);
