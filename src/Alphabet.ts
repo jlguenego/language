@@ -1,21 +1,26 @@
-import {getSymbol} from './Symbol';
+import {JSSymbol} from './JSSymbol';
 
-export const alphabet = <T extends string>(
+export const alphabet = <T extends string, U extends Object>(
+  SymbolClass: new (str: string) => U,
   ...array: readonly T[]
-): Record<T, symbol> & Alphabet => {
-  const result: Record<T, symbol> = {} as Record<T, symbol>;
+): Record<T, U> & Alphabet => {
+  const result: Record<T, U> = {} as Record<T, U>;
   for (const a of array) {
-    result[a] = getSymbol(a);
+    result[a] = new SymbolClass(a);
   }
   Object.setPrototypeOf(result, Alphabet.prototype);
   return result;
 };
 
+export const symbolAlphabet = <T extends string>(...args: readonly T[]) =>
+  alphabet(JSSymbol, ...args);
+
 export class Alphabet {}
 
-export const BinaryAlphabet = alphabet('0', '1');
+export const BinaryAlphabet = alphabet(JSSymbol, '0', '1');
 
 export const RomanAlphabet = alphabet(
+  JSSymbol,
   'a',
   'b',
   'c',
