@@ -35,5 +35,6 @@ describe('Alphabet Unit Test', () => {
     const word1 = new Word<typeof n1>([n1.a, n1.b, n1.a]);
     const word2 = Word.from(n2, ['a', 'b', 'a']);
     assert.deepStrictEqual(word1 === word2, true);
+    assert.deepStrictEqual(word1.symbols[0] === word2.symbols[0], true);
   });
 });
