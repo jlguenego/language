@@ -29,4 +29,11 @@ describe('Alphabet Unit Test', () => {
       true
     );
   });
+  it('test word on different alphabet', () => {
+    const n1 = alphabet('a', 'b');
+    const n2 = alphabet('a', 'b');
+    const word1 = new Word<typeof n1>([n1.a, n1.b, n1.a]);
+    const word2 = Word.from(n2, ['a', 'b', 'a']);
+    assert.deepStrictEqual(word1 === word2, true);
+  });
 });
