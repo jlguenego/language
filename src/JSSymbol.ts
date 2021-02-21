@@ -6,7 +6,8 @@ export class JSSymbol {
     if (symbol) {
       return symbol;
     }
-    map.set(name, this);
-    return this;
+    const result = {name};
+    map.set(name, result);
+    return result;
   }
 }

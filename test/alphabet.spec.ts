@@ -9,6 +9,10 @@ describe('Alphabet Unit Test', () => {
     const hello: JSSymbol[] = [a.titi, a.tata, a.titi];
     assert(hello);
   });
+  it('test instanceof', () => {
+    const a = symbolAlphabet('titi', 'tata');
+    assert.deepStrictEqual(a.titi instanceof JSSymbol, false);
+  });
   it('test word', () => {
     const n = symbolAlphabet('a', 'b');
     const word1 = new Word<typeof n>([n.a, n.b, n.a]);
