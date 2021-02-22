@@ -2,6 +2,11 @@ import {MemoCache} from '@jlguenego/set';
 import {Alphabet} from './Alphabet';
 
 export class Word<T extends Alphabet> {
+  static retrieveFromCache(symbols: unknown[]): Word<Alphabet> | undefined {
+    const word = Object.create(Word.prototype) as Word<Alphabet>;
+    word.symbols = symbols as never[];
+    return MemoCache.retrieveFromCache(word);
+  }
   static from<T extends Alphabet>(alphabet: T, names: (keyof T)[]) {
     return new Word(names.map(n => alphabet[n]));
   }
@@ -21,8 +26,11 @@ export class Word<T extends Alphabet> {
     return new Word(symbols);
   }
 
-  concat(word: Word<T>): Word<T> {
+  concat(word: Word<T>, k?: number): Word<T> {
     const symbols = this.symbols.concat(word.symbols);
+    if (k !== undefined) {
+      return new Word(symbols.slice(0, k));
+    }
     return new Word(symbols);
   }
 
@@ -78,6 +86,11 @@ export class Word<T extends Alphabet> {
   isProperSubstringOf(word: Word<T>): boolean {
     return this.isSubstringOf(word) && this !== word;
   }
+
+  toString() {
+    throw new Error('please do not call toString on a word');
+  }
 }
 
-export const emptyWord = new Word<Alphabet>([]);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const emptyWord = new Word<any>([]);

@@ -24,10 +24,7 @@ describe('Alphabet Unit Test', () => {
     const word1 = new Word([]);
     const word2 = new Word<typeof n>([]);
     assert.deepStrictEqual(word1 === emptyWord, true);
-    assert.deepStrictEqual(
-      word2 === ((emptyWord as unknown) as typeof word2),
-      true
-    );
+    assert.deepStrictEqual(word2 === emptyWord, true);
     assert.deepStrictEqual(
       word2 === ((word1 as unknown) as typeof word2),
       true
@@ -40,6 +37,14 @@ describe('Alphabet Unit Test', () => {
     const word2 = Word.from(n2, ['a', 'b', 'a']);
     assert.deepStrictEqual(word1 === word2, true);
     assert.deepStrictEqual(word1.symbols[0] === word2.symbols[0], true);
+  });
+  it('test concat', () => {
+    const n = symbolAlphabet('a', 'b');
+    const word = Word.from(n, ['a', 'b']);
+    assert.deepStrictEqual(
+      word.concat(word, 1),
+      new Word<typeof n>([n.a])
+    );
   });
   it('test powerWord', () => {
     const n = symbolAlphabet('a', 'b');
