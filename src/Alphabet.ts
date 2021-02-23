@@ -12,7 +12,7 @@ export const alphabet = <T extends string, U extends Object>(
   return result;
 };
 
-export const symbolAlphabet = <T extends string>(...args: readonly T[]) =>
+export const defineSymbolAlphabet = <T extends string>(...args: readonly T[]) =>
   alphabet(JSSymbol, ...args);
 
 export class Alphabet {}

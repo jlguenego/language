@@ -1,5 +1,6 @@
 import {MemoCache} from '@jlguenego/set';
 import {Alphabet} from './Alphabet';
+import {symbolToString} from './misc';
 
 export class Word<T extends Alphabet> {
   static retrieveFromCache(symbols: unknown[]): Word<Alphabet> | undefined {
@@ -26,8 +27,10 @@ export class Word<T extends Alphabet> {
     return new Word(symbols);
   }
 
-  concat(word: Word<T>, k?: number): Word<T> {
-    const symbols = this.symbols.concat(word.symbols);
+  concat<U extends Alphabet>(word: Word<U>, k?: number): Word<T | U> {
+    const symbols = (this.symbols as (T | U)[keyof (T | U)][]).concat(
+      (word.symbols as unknown) as ConcatArray<(T | U)[keyof T & keyof U]>
+    );
     if (k !== undefined) {
       return new Word(symbols.slice(0, k));
     }
@@ -87,8 +90,11 @@ export class Word<T extends Alphabet> {
     return this.isSubstringOf(word) && this !== word;
   }
 
-  toString() {
-    throw new Error('please do not call toString on a word');
+  toString(): string {
+    if (this.length === 0) {
+      return 'ε';
+    }
+    return this.symbols.map(s => symbolToString(s)).join('');
   }
 }
 
