@@ -1,6 +1,13 @@
 import {Alphabet} from './Alphabet';
 import {emptyWord, Word} from './Word';
 
+/**
+ * a language is a set of words. Here we handle only finite language.
+ *
+ * @export
+ * @class Language
+ * @template T an alphabet
+ */
 export class Language<T extends Alphabet> {
   constructor(public set: Set<Word<T>>) {}
 
