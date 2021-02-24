@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/jlguenego/language/compare/v1.0.0...v1.0.1) (2021-02-24)
+
+
+### Bug Fixes
+
+* export ([a44b018](https://github.com/jlguenego/language/commit/a44b018ecee31f3db1e58461e0d6d6d87568e972))
+* import from test ([1ce7189](https://github.com/jlguenego/language/commit/1ce7189542e406c44cfc8578386c84c0329e6ddf))
+
 ## [1.0.0](https://github.com/jlguenego/language/compare/v0.0.3...v1.0.0) (2021-02-24)
 
 ### [0.0.3](https://github.com/jlguenego/language/compare/v0.0.2...v0.0.3) (2021-02-24)
