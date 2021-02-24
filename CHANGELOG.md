@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/jlguenego/language/compare/v0.0.2...v0.0.3) (2021-02-24)
+
+
+### Features
+
+* added language ([20ba06e](https://github.com/jlguenego/language/commit/20ba06e64adb7fe9d44fb286df6cbb0a3a99ba6c))
+* added retrieve from cache ([1151544](https://github.com/jlguenego/language/commit/1151544574da787ebbb5c5ad99a9d2c480cd6d3c))
+
+
+### Bug Fixes
+
+* remove js symbol primitive type ([6aad086](https://github.com/jlguenego/language/commit/6aad0864f24492c5c776ad183fa66fe416caa125))
+
 ### 0.0.2 (2021-02-21)
 
 
