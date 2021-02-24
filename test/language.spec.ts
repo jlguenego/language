@@ -1,6 +1,5 @@
-import {Language} from './../src/Language';
 import assert from 'assert';
-import {defineSymbolAlphabet, Word} from '../src';
+import {defineSymbolAlphabet, Language, Word} from '../src';
 
 describe('Language Unit Test', () => {
   it('test language_concat', () => {

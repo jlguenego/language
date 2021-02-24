@@ -1,7 +1,5 @@
-import {emptyWord} from './../src/Word';
 import assert from 'assert';
-import {defineSymbolAlphabet, Word} from '../src';
-import {JSSymbol} from '../src/JSSymbol';
+import {defineSymbolAlphabet, emptyWord, JSSymbol, Word} from '../src';
 
 describe('Alphabet Unit Test', () => {
   it('test alphabet', () => {
