@@ -1,3 +1,4 @@
+import {MemoCache} from '@jlguenego/set';
 import {Alphabet} from './Alphabet';
 import {emptyWord, Word} from './Word';
 
@@ -9,7 +10,9 @@ import {emptyWord, Word} from './Word';
  * @template T an alphabet
  */
 export class Language<T extends Alphabet> {
-  constructor(public set: Set<Word<T>>) {}
+  constructor(public set: Set<Word<T>>) {
+    return MemoCache.handle(this);
+  }
 
   [Symbol.iterator]() {
     return this.set.keys();

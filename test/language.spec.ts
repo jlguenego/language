@@ -2,6 +2,16 @@ import assert from 'assert';
 import {defineSymbolAlphabet, Language, Word} from '../src';
 
 describe('Language Unit Test', () => {
+  it('test language_cache', () => {
+    const t = defineSymbolAlphabet('a', 'b');
+    const l1 = new Language(
+      new Set([new Word<typeof t>([t.a, t.b]), new Word<typeof t>([t.a, t.a])])
+    );
+    const l2 = new Language(
+      new Set([new Word<typeof t>([t.a, t.b]), new Word<typeof t>([t.a, t.a])])
+    );
+    assert.deepStrictEqual(l1 === l2, true);
+  });
   it('test language_concat', () => {
     const t = defineSymbolAlphabet('a', 'b');
     const u = defineSymbolAlphabet('c', 'd');
