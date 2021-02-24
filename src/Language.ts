@@ -3,19 +3,23 @@ import {Alphabet} from './Alphabet';
 import {emptyWord, Word} from './Word';
 
 /**
- * a language is a set of words. Here we handle only finite language.
+ * a language is a immutable set of words. Here we handle only finite languages.
  *
  * @export
  * @class Language
  * @template T an alphabet
  */
 export class Language<T extends Alphabet> {
-  constructor(public set: Set<Word<T>>) {
+  constructor(private set: Set<Word<T>>) {
     return MemoCache.handle(this);
   }
 
   [Symbol.iterator]() {
     return this.set.keys();
+  }
+
+  get size() {
+    return this.set.size;
   }
 
   concat<U extends Alphabet>(language: Language<U>): Language<T | U> {
