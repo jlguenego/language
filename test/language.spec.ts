@@ -34,4 +34,16 @@ describe('Language Unit Test', () => {
 
     assert.deepStrictEqual(l2.toString(), '{ aa }');
   });
+  it('test language_getSet', () => {
+    const t = defineSymbolAlphabet('a', 'b');
+    const l = new Language(
+      new Set([new Word<typeof t>([t.a])])
+    );
+    const set = l.getSet();
+    set.add(
+      new Word<typeof t>([t.b])
+    );
+    assert.deepStrictEqual(l.size, 1);
+    assert.deepStrictEqual(set.size, 2);
+  });
 });

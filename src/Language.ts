@@ -22,6 +22,10 @@ export class Language<T extends Alphabet> {
     return this.set.size;
   }
 
+  getSet() {
+    return new Set(this.set);
+  }
+
   concat<U extends Alphabet>(language: Language<U>): Language<T | U> {
     const set = new Set<Word<T | U>>();
     for (const a of this) {
